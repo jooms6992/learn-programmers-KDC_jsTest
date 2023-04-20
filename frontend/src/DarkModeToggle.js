@@ -14,7 +14,7 @@ class DarkModeToggle {
     $DarkModeToggle.addEventListener('change', (e) => {
       // checkbox의 checked 상태
       console.dir(e.target.checked);
-      onChange(e.target.checked);
+      // onChange(e.target.checked);
       // documentElement는 최상위 HTML element요소(root요소)
       this.setColorMode(e.target.checked);
     });
@@ -42,8 +42,8 @@ class DarkModeToggle {
     );
   }
 
-  setState(nextData) {
-    this.data = nextData;
-    this.initColorMode(this.data.isDarkMode);
-  }
+  // setState(nextData) {
+  //   this.data = nextData;
+  //   this.initColorMode(this.data.isDarkMode);
+  // }
 }

@@ -96,6 +96,38 @@ body * {
   width: 100%;
 }
 
+.DarkModeToggle {
+  width: 30px;
+  height: 30px;
+}
+
+.Loading {
+  /* fixed는 html흐름에서 모달같은 것을 만들 때, 화면 전체를 덮는식으로 */
+  position: fixed;
+  /* 화면을 덮어서 다른동작을 하지못하게함 */
+  z-index: 10;
+  top: 0;
+  left: 0;
+  width: 100%;
+  /* 그냥 100%를 하면 부모요소(fixed시 body)까지 계속 100%로 조정을 해줘야해서 viewport기준인 vh로 해줌 */
+  /* 말그대로 화면 세로로 100% 꽉채워서 쓰겠다는 뜻 */
+  /* fixed라서 되는거고 다른 상속관계에서는 안될수도있다  */
+  height: 100vh;
+  /* a는 알파값:투명도 */
+  background: rgba(0, 0, 0, 0.3);
+}
+
+/* 가운데 정렬 외워서 쓰자 */
+.Loading p {
+  /* absolute top,left, tranform translate으로 세로가로가운데정렬 */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  /* 해당 엘리먼트의 50%만큼 이동 */
+  transform: translate(-50%, -50%);
+  font-size: 40px;
+}
+
 /* 암기의 영역입니다 */
 /* 괄호안은 조건(max-width ~ ) */
 @media screen and (max-width: 992px) {
