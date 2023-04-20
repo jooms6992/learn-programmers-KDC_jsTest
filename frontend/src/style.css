@@ -1,8 +1,20 @@
 @font-face {
-  font-family: "Goyang";
-  src: url("/src/fonts/Goyang.woff") format("woff");
+  font-family: 'Goyang';
+  src: url('/src/fonts/Goyang.woff') format('woff');
   font-weight: normal;
   font-style: normal;
+}
+
+/* 다크 모드 뿐만아니라 테마변경에 응용가능 */
+:root[color-mode='dark'] {
+  /* 이런 선택자 쓸수있다 */
+  --background: #000;
+  --textColor: white;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--textColor);
 }
 
 html {
@@ -10,7 +22,7 @@ html {
 }
 
 body * {
-  font-family: Goyang;
+  font-family: 'Goyang';
 }
 
 *,
@@ -84,11 +96,31 @@ body * {
   width: 100%;
 }
 
-/* dark mode 처리
+/* 암기의 영역입니다 */
+/* 괄호안은 조건(max-width ~ ) */
+@media screen and (max-width: 992px) {
+  .SearchResult {
+    grid-template-columns: repeat(3, minmax(250px, 1fr));
+  }
+}
+@media screen and (max-width: 768px) {
+  .SearchResult {
+    grid-template-columns: repeat(2, minmax(250px, 1fr));
+  }
+  .ImageInfo .content-wrapper {
+    width: 100%;
+  }
+}
+@media screen and (max-width: 576px) {
+  .SearchResult {
+    grid-template-columns: repeat(1, minmax(250px, 1fr));
+  }
+}
+
+/* dark mode 처리 */
 @media (prefers-color-scheme: dark) {
   body {
     background-color: #000;
     color: white;
   }
 }
-*?

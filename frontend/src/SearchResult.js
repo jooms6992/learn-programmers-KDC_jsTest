@@ -4,9 +4,11 @@ class SearchResult {
   onClick = null;
 
   constructor({ $target, initialData, onClick }) {
-    this.$searchResult = document.createElement("div");
-    this.$searchResult.className = "SearchResult";
-    $target.appendChild(this.$searchResult);
+    const $wrappper = document.createElement('section');
+    this.$searchResult = document.createElement('ul');
+    this.$searchResult.className = 'SearchResult';
+    $wrappper.appendChild(this.$searchResult);
+    $target.appendChild($wrappper);
 
     this.data = initialData;
     this.onClick = onClick;
@@ -16,22 +18,23 @@ class SearchResult {
 
   setState(nextData) {
     this.data = nextData;
+    console.log(this.data, '---SearchResult');
     this.render();
   }
 
   render() {
     this.$searchResult.innerHTML = this.data
       .map(
-        cat => `
-          <div class="item">
+        (cat) => `
+          <li class="item">
             <img src=${cat.url} alt=${cat.name} />
-          </div>
+          </li>
         `
       )
-      .join("");
+      .join('');
 
-    this.$searchResult.querySelectorAll(".item").forEach(($item, index) => {
-      $item.addEventListener("click", () => {
+    this.$searchResult.querySelectorAll('.item').forEach(($item, index) => {
+      $item.addEventListener('click', () => {
         this.onClick(this.data[index]);
       });
     });
