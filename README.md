@@ -38,3 +38,10 @@
  - Loading컴포넌트에서 기본 html만들고 App.js에 연결 후 css스타일링 먼저 해줌
  - Loading컴포넌트에서 ui제어하는 메서드 만들어줌
  - 이미지검색할때 로딩화면 띄워줄거니깐 App.js의 searchInput인스턴스의 onSearch안에 apit실행 전후로 Loading메서드 넣어줌 그전에 콘솔로 먼저 찍어봄 차근차근
+ 
+ # 1-3_랜덤버튼
+ 1. createElement로 ui만들어주고 appendChild로 화면에 달아준다
+ 2. onRandomSearch를 App.js에서 만들고 api.js가서 fetchRandomCats메서드 만들어준다
+ - 전부 다 기존의 코드 참고해서 만든거일뿐! 어려울거 없다!
+ 
+ **숙제 랜덤버튼 컴포넌트로 만들기
