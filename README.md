@@ -45,3 +45,12 @@
  - 전부 다 기존의 코드 참고해서 만든거일뿐! 어려울거 없다!
  
  **숙제 랜덤버튼 컴포넌트로 만들기
+ 
+ # 1-4_모달제어
+ - 상세 정보 요청하고 정보 업데이트 하는 showDetail 메서드 ImageInfo컴포넌트 안에 만들고
+ - searchResult onClick함수에 showDetail 실행되게끔
+ - 상세 정보 요청은 api.js에서 만들어줌 (id 받아서 실행함)
+ - 왜냐 searchResult컴포넌트를 살펴보면 onClick시에 data를 전달받음
+ **숙제 showDetail async await 패턴으로 만들어보기
+ - 모달창 끄는 제어는 imageInfo컴포넌트 내의 visble state를 변경함으로써 닫히게끔 한다
+
