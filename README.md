@@ -53,4 +53,12 @@
  - 왜냐 searchResult컴포넌트를 살펴보면 onClick시에 data를 전달받음
  **숙제 showDetail async await 패턴으로 만들어보기
  - 모달창 끄는 제어는 imageInfo컴포넌트 내의 visble state를 변경함으로써 닫히게끔 한다
+ 
+ # 1-5 로컬스토리지
+ - localStorage setItem, getItem 사용법 기억하기
+ - key.value로 이루어져 있으며 value는 string타입이다
+ - 그래서 split()이나 join() 작업이 필요하다
+ - JSON형태로 저장한다면 저장할때는 stringify(), 불러올때는 parse()해줘야 한다
+ - 초기에 로컬스토리지가 비어있을때 null이 오기 때문에 null이 왔을때 조건문(삼항연산자)로 처리해줘야한다
+ **숙제 마지막 키워드 input에 띄워보기
 
