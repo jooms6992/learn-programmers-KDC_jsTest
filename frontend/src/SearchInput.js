@@ -12,9 +12,12 @@ class SearchInput {
     $searchInput.className = 'SearchInput';
     $wrappper.appendChild($searchInput);
 
-    $searchInput.addEventListener('keyup', (e) => {
-      if (e.keyCode === 13) {
+    // keyup은 한글일때 두번엔터가 되는 오류가 난다
+    $searchInput.addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') {
         onSearch(e.target.value);
+        // 최근 키워드 저장
+        this.KeywordHistory.addKeyword(e.target.value);
       }
     });
 
@@ -28,6 +31,11 @@ class SearchInput {
 
     $randomButton.addEventListener('click', (e) => {
       onRandomSearch('아');
+    });
+
+    this.KeywordHistory = new KeywordHistory({
+      $target,
+      onSearch,
     });
   }
   render() {}

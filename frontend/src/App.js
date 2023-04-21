@@ -25,13 +25,13 @@ class App {
       $target,
       onSearch: (keyword) => {
         // 로딩 show
-        console.log('show');
         this.Loading.show();
         api.fetchCats(keyword).then(({ data }) => {
           this.setState(data);
           this.Loading.hide();
-          console.log('hide');
           // 로딩 hide
+          // 로컬에 저장
+          this.saveResult(data);
         });
       },
       onRandomSearch: () => {
@@ -61,11 +61,28 @@ class App {
         image: null,
       },
     });
+
+    this.init();
   }
 
   setState(nextData) {
     console.log(this);
     this.data = nextData;
     this.searchResult.setState(nextData);
+  }
+
+  saveResult(result) {
+    console.log(result);
+    // JSON stringify로 객체를 string화 해줘야해
+    localStorage.setItem('lastResult', JSON.stringify(result));
+  }
+
+  init() {
+    const lastResult =
+      localStorage.getItem('lastResult') === null
+        ? []
+        : JSON.parse(localStorage.getItem('lastResult'));
+    // 불러올때는 다시 JSON parse로 객체화 해줘야 한다!
+    this.setState(lastResult);
   }
 }
