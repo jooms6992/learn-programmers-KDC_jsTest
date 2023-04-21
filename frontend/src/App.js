@@ -12,10 +12,10 @@ class App {
 
     this.Loading = new Loading({ $target });
 
-    this.DarkModeToggle = new DarkModeToggle({
+    this.darkModeToggle = new DarkModeToggle({
       $target,
       onChange: (isDarkMode) => {
-        this.DarkModeToggle.setState({
+        this.darkModeToggle.setState({
           isDarkMode,
         });
       },
@@ -32,6 +32,13 @@ class App {
           this.Loading.hide();
           console.log('hide');
           // 로딩 hide
+        });
+      },
+      onRandomSearch: () => {
+        this.Loading.show();
+        api.fetchRandomCats().then(({ data }) => {
+          this.setState(data);
+          this.Loading.hide();
         });
       },
     });
