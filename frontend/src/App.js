@@ -6,6 +6,7 @@ class App {
   $target = null;
   // data === state
   data = [];
+  page = 1;
   // 클래스로 인스턴스를 초기화해줌
   constructor($target) {
     this.$target = $target;
@@ -50,6 +51,21 @@ class App {
         this.imageInfo.showDetail({
           visible: true,
           cat,
+        });
+      },
+      onNextPage: () => {
+        this.Loading.show();
+        const keywordHistory =
+          localStorage.getItem('keywordHistory') === null
+            ? []
+            : localStorage.getItem('keywordHistory').split(',');
+        const lastKeyword = keywordHistory[0];
+        const page = this.page + 1;
+        api.fetchCatsPage(lastKeyword, page).then(({ data }) => {
+          let newData = this.data.concat(data);
+          this.setState(newData);
+          this.page = page;
+          this.Loading.hide();
         });
       },
     });
