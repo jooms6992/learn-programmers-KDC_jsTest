@@ -47,3 +47,4 @@ class DarkModeToggle {
     this.setColorMode(this.data.isDarkMode);
   }
 }
+export default DarkModeToggle;

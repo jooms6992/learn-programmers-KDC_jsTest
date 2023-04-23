@@ -48,6 +48,8 @@ body * {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  /* 초기 높이를 설정해 한번에 로딩되는 것을 방지 */
+  min-height: 300px;
 }
 
 .SearchResult .item {
@@ -137,6 +139,20 @@ body * {
   transform: translate(-50%, -50%);
   font-size: 40px;
 }
+
+/* .Empty {
+  font-size: 30px;
+  padding: 100px 0;
+  text-align: center;
+}
+
+.Empty p {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 40px;
+} */
 
 /* 암기의 영역입니다 */
 /* 괄호안은 조건(max-width ~ ) */

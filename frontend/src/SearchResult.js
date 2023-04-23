@@ -1,4 +1,6 @@
 // App.js(상위 컴포넌트)에서 제공해주는 내용을 출력만해주는 역할
+
+// import Empty from './Empty.js';
 class SearchResult {
   $searchResult = null;
   data = null;
@@ -15,6 +17,10 @@ class SearchResult {
     this.onClick = onClick;
     this.onNextPage = onNextPage;
 
+    // this.Empty = new Empty({
+    //   $target: $wrappper
+    // });
+
     this.render();
   }
 
@@ -24,33 +30,34 @@ class SearchResult {
     this.render();
   }
 
-  isElementInViewport(el) {
-    const rect = el.getBoundingClientRect();
-    return (
-      rect.top >= 0 &&
-      rect.left >= 0 &&
-      rect.bottom <=
-        (window.innerHeight || document.documentElement.clientHeight) &&
-      rect.right <= (window.innerWidth || document.documentElement.clientWidth)
-    );
-  }
-
-  applyEventToElement = (items) => {
-    document.addEventListener('scroll', () => {
-      items.forEach((el, index) => {
-        if (this.isElementInViewport(el) && items.length - 1 === index) {
+  // 무한스크롤, 레이지로딩
+  listObserver = new IntersectionObserver((items, observer) => {
+    items.forEach((item) => {
+      // 아이템이 화면에 보일 때
+      if (item.isIntersecting) {
+        // 이미지를 로드한다.
+        // img의 src(더미이미지)를 데이터에 저장해놓은 실제src로 대체해준다
+        // 이렇게 레이지 로딩 구현!
+        item.target.querySelector('img').src =
+          item.target.querySelector('img').dataset.src;
+        // 마지막 요소를 찾아낸다
+        let dataIndex = Number(item.target.dataset.index);
+        // 마지막 요소라면? nextpage를 호출
+        if (dataIndex + 1 === this.data.length) {
           this.onNextPage();
         }
-      });
+      }
     });
-  };
+  });
 
   render() {
     this.$searchResult.innerHTML = this.data
       .map(
-        (cat) => `
-          <li class="item">
-            <img src=${cat.url} alt=${cat.name} />
+        (cat, index) => `
+          <li class="item" data-index=${index} >
+            <img src= 'https://via.placeholder.com/200x300/FFFF00/000000' alt=${cat.name}
+            data-src=${cat.url}
+            />
           </li>
         `
       )
@@ -60,12 +67,11 @@ class SearchResult {
       $item.addEventListener('click', () => {
         this.onClick(this.data[index]);
       });
+      this.listObserver.observe($item);
     });
-
-    let listItems = this.$searchResult.querySelectorAll('.item');
-    this.applyEventToElement(listItems);
   }
 }
 // 두 가지 방법
 // 1. 페이지가 끝까지 갔을때
 // 2. 목록의 마지막 요소가 화면에 보였을때 추가할꺼임 <- 우린 이걸로!
+export default SearchResult;

@@ -1,6 +1,13 @@
 console.log('app is running!');
 // 가장 큰 단위의 컨테이너 컴포넌트
 // 코드를 보면서 컨벤션을 파악한다
+
+import Loading from './Loading.js';
+import DarkModeToggle from './DarkModeToggle.js';
+import SearchInput from './SearchInput.js';
+import SearchResult from './SearchResult.js';
+import ImageInfo from './ImageInfo.js';
+import api from './api.js';
 class App {
   // $를 쓴건 DOM을 가리킨거
   $target = null;
@@ -102,3 +109,4 @@ class App {
     this.setState(lastResult);
   }
 }
+export default App;

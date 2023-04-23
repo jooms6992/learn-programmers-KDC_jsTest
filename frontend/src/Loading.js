@@ -47,3 +47,4 @@ class Loading {
   }
 }
 // 로딩화면 숨기는걸 class가 아닌 state로 해보자!
+export default Loading;
