@@ -75,7 +75,7 @@ SearchResult에서 App.js에서 제공해주는 내용을 받아와 SearchResult
 - api에 전달하는 데이터 keyword와 page를 어떻게 관리할지
 - 스크롤 이벤트는 반응을 너무 많이 해서 쓰지말고 다른거!
 
-# 1-7 IntersectionObserver
+# 2-1 IntersectionObserver
 - scroll이벤트가 화면을 reflow하는 작업을 하게 돼서 최적화에 좋지 않고 이게 화면에 반영되어 ux에도 나쁘다
 - 하여 IntersectionObserver로 대체한다
 - 마지막요소를 감지해 다음 요소를 불러옴으로써 무한스크롤을 구현할 수 있다.
@@ -86,3 +86,15 @@ SearchResult에서 App.js에서 제공해주는 내용을 받아와 SearchResult
 - 더미이미지 주소 :</br> https://via.placeholder.com/300x100/FFFF00/000000.png?text=Test+Image
 - 가로x세로/배경색/글자색.확장자?text=텍스트(공백은+로)
 
+# 2-2 api
+- 각 api에 쓰이고 있는 fetch메서드를 분리, 에러 한번에 처리
+- request 성공여부가 확실치 않으면 trycatch를 쓴다
+- async await로 결과를 확실히 받아오고 에러는 throw문법으로 catch에 전달
+- 에러목록을 만들어 여러 에러를 일괄적을 다룬다
+
+# 2-3 모듈화
+- 최상위 컴포넌트에 type=module 지정해주면 그 이하에도 모두 적용됨
+- import해주려면 export가 선행되어야 함
+- config파일 만들어 주소,헤더,토큰 같은 정보들 분리
+- 재사용 가능한 메서드는 모듈화해준다</br>
+**REQUEST_ERROR 분리해서 작성해 보기
