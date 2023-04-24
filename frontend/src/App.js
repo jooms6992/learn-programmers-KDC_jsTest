@@ -35,7 +35,7 @@ class App {
         // 로딩 show
         this.Loading.show();
         api.fetchCats(keyword).then(({ data }) => {
-          this.setState(data);
+          this.setState(data ? data : []);
           this.Loading.hide();
           // 로딩 hide
           // 로컬에 저장
