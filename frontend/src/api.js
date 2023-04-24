@@ -1,5 +1,6 @@
-const API_ENDPOINT = 'http://localhost:4001';
-// "https://rhdd0roxs5.execute-api.ap-northeast-2.amazonaws.com/dev";
+import config from './config.js';
+
+const { API_ENDPOINT } = config;
 
 // 에러 목록을 만들어 여러 에러 다루기
 const REQUEST_ERROR = {

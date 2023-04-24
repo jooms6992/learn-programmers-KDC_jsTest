@@ -1,3 +1,5 @@
+import uniqueArray from './utils/uniqueArray.js';
+
 class KeywordHistory {
   $keywordHistory = null;
   data = null;
@@ -26,6 +28,8 @@ class KeywordHistory {
     let keywordHistory = this.getHistory();
     // const로 해줘도 상관없지만 기억을 위해서 이렇게 작업하기도 한다
     keywordHistory.unshift(keyword);
+    // 중복제거
+    keywordHistory = uniqueArray(keywordHistory);
     // 최대 5개만 저장
     keywordHistory = keywordHistory.slice(0, 5);
     localStorage.setItem('keywordHistory', keywordHistory.join(','));
