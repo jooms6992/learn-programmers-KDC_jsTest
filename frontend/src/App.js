@@ -8,12 +8,16 @@ import SearchInput from './SearchInput.js';
 import SearchResult from './SearchResult.js';
 import ImageInfo from './ImageInfo.js';
 import api from './api.js';
+
 class App {
   // $를 쓴건 DOM을 가리킨거
   $target = null;
+  DEFAULT_PAGE = 1;
   // data === state
-  data = [];
-  page = 1;
+  data = {
+    items: [],
+    page: this.DEFAULT_PAGE,
+  };
   // 클래스로 인스턴스를 초기화해줌
   constructor($target) {
     this.$target = $target;
@@ -35,7 +39,7 @@ class App {
         // 로딩 show
         this.Loading.show();
         api.fetchCats(keyword).then(({ data }) => {
-          this.setState(data ? data : []);
+          this.setState({ items: data ? data : [], page: 1 });
           this.Loading.hide();
           // 로딩 hide
           // 로컬에 저장
@@ -45,7 +49,10 @@ class App {
       onRandomSearch: () => {
         this.Loading.show();
         api.fetchRandomCats().then(({ data }) => {
-          this.setState(data);
+          this.setState({
+            items: data ? data : [],
+            page: this.DEFAULT_PAGE,
+          });
           this.Loading.hide();
         });
       },
@@ -53,7 +60,7 @@ class App {
 
     this.searchResult = new SearchResult({
       $target,
-      initialData: this.data,
+      initialData: this.data.items,
       onClick: (cat) => {
         this.imageInfo.showDetail({
           visible: true,
@@ -69,9 +76,11 @@ class App {
         const lastKeyword = keywordHistory[0];
         const page = this.page + 1;
         api.fetchCatsPage(lastKeyword, page).then(({ data }) => {
-          let newData = this.data.concat(data);
-          this.setState(newData);
-          this.page = page;
+          let newData = this.data.items.concat(data);
+          this.setState({
+            items: newData,
+            page: page,
+          });
           this.Loading.hide();
         });
       },
@@ -89,13 +98,11 @@ class App {
   }
 
   setState(nextData) {
-    console.log(this);
     this.data = nextData;
-    this.searchResult.setState(nextData);
+    this.searchResult.setState(nextData.items);
   }
 
   saveResult(result) {
-    console.log(result);
     // JSON stringify로 객체를 string화 해줘야해
     localStorage.setItem('lastResult', JSON.stringify(result));
   }
@@ -106,7 +113,10 @@ class App {
         ? []
         : JSON.parse(localStorage.getItem('lastResult'));
     // 불러올때는 다시 JSON parse로 객체화 해줘야 한다!
-    this.setState(lastResult);
+    this.setState({
+      items: lastResult,
+      page: this.DEFAULT_PAGE,
+    });
   }
 }
 export default App;

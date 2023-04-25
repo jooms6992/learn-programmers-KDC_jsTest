@@ -20,15 +20,17 @@ class ImageInfo {
     this.render();
   }
 
-  showDetail(data) {
+  // 정보를 요청해서 받아와 무언가를 해줄때는 async await로 해주는게 좋음
+  async showDetail(data) {
     // 상세 정보 요청
-    api.fetchCatDetail(data.cat.id).then(({ data }) => {
+    const detailinfo = await api.fetchCatDetail(data.cat.id);
+    if (detailinfo) {
       // 정보를 업데이트
       this.setState({
         visible: true,
-        cat: data,
+        cat: detailinfo.data,
       });
-    });
+    }
   }
 
   // visible state를 변경함으로써 닫게끔
