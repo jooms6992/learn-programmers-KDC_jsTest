@@ -1,6 +1,6 @@
 // App.js(상위 컴포넌트)에서 제공해주는 내용을 출력만해주는 역할
 
-// import Empty from './Empty.js';
+import Empty from './Empty.js';
 class SearchResult {
   $searchResult = null;
   data = null;
@@ -17,9 +17,9 @@ class SearchResult {
     this.onClick = onClick;
     this.onNextPage = onNextPage;
 
-    // this.Empty = new Empty({
-    //   $target: $wrappper
-    // });
+    this.Empty = new Empty({
+      $target: $wrappper,
+    });
 
     this.render();
   }
@@ -28,6 +28,7 @@ class SearchResult {
     this.data = nextData || [];
     console.log(this.data, '---SearchResult');
     this.render();
+    this.Empty.show(nextData);
   }
 
   // 무한스크롤, 레이지로딩
@@ -51,10 +52,15 @@ class SearchResult {
   });
 
   render() {
+    if (this.data === null || this.data.length === 0) {
+      this.$searchResult.style.display = 'none';
+      return;
+    }
+    this.$searchResult.style.display = 'grid';
     this.$searchResult.innerHTML = this.data
       .map(
         (cat, index) => `
-          <li class="item" data-index=${index} >
+      <li class="item" data-index=${index} >
             <img src= 'https://via.placeholder.com/200x300/FFFF00/000000' alt=${cat.name}
             data-src=${cat.url}
             />

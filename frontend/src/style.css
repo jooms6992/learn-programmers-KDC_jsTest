@@ -140,10 +140,10 @@ body * {
   font-size: 40px;
 }
 
-/* .Empty {
+.Empty {
+  text-align: center;
   font-size: 30px;
   padding: 100px 0;
-  text-align: center;
 }
 
 .Empty p {
@@ -152,7 +152,7 @@ body * {
   left: 50%;
   transform: translate(-50%, -50%);
   font-size: 40px;
-} */
+}
 
 /* 암기의 영역입니다 */
 /* 괄호안은 조건(max-width ~ ) */

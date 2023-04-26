@@ -10,14 +10,16 @@ class Empty {
 
     this.data = {
       show: false,
+      isNull: false,
     };
 
     this.render();
   }
 
-  show(isEmpty) {
+  show(data) {
     this.setState({
-      show: true,
+      show: data === null || data.length === 0,
+      isNall: data === null,
     });
   }
 
@@ -29,11 +31,19 @@ class Empty {
   render() {
     if (this.data.show) {
       this.$empty.style.display = 'block';
-      this.$empty.innerHTML = `
-        <p>
-          😐결과가 없습니다🐱
-        </p>
-      `;
+      if (this.data.isNall) {
+        this.$empty.innerHTML = `
+          <p>
+            😐요청 실패🐱
+          </p>
+        `;
+      } else {
+        this.$empty.innerHTML = `
+          <p>
+            😐결과가 없습니다🐱
+          </p>
+        `;
+      }
     } else {
       this.$empty.style.display = 'none';
       this.$empty.innerHTML = ``;

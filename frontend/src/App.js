@@ -39,7 +39,9 @@ class App {
         // 로딩 show
         this.Loading.show();
         api.fetchCats(keyword).then(({ data }) => {
-          this.setState({ items: data ? data : [], page: 1 });
+          // data가 null,빈배열, 요소 이렇게 3가지 경우가 올 수 있다.
+          // 이걸 여기서 처리해주는 것이 아닌 각 컴포넌트에서!
+          this.setState({ items: data, page: 1 });
           this.Loading.hide();
           // 로딩 hide
           // 로컬에 저장
@@ -50,7 +52,7 @@ class App {
         this.Loading.show();
         api.fetchRandomCats().then(({ data }) => {
           this.setState({
-            items: data ? data : [],
+            items: data,
             page: this.DEFAULT_PAGE,
           });
           this.Loading.hide();
