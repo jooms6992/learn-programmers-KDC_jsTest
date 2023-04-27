@@ -8,6 +8,7 @@ import SearchInput from './SearchInput.js';
 import SearchResult from './SearchResult.js';
 import ImageInfo from './ImageInfo.js';
 import api from './api.js';
+import Banner from './Banner.js';
 
 class App {
   // $를 쓴건 DOM을 가리킨거
@@ -39,6 +40,7 @@ class App {
         // 로딩 show
         this.Loading.show();
         api.fetchCatsWithLimit(keyword, limit).then(({ data }) => {
+          console.log(data);
           // data가 null,빈배열, 요소 이렇게 3가지 경우가 올 수 있다.
           // 이걸 여기서 처리해주는 것이 아닌 각 컴포넌트에서!
           this.setState({ items: data, page: 1 });
@@ -58,6 +60,10 @@ class App {
           this.Loading.hide();
         });
       },
+    });
+
+    this.banner = new Banner({
+      $target,
     });
 
     this.searchResult = new SearchResult({
