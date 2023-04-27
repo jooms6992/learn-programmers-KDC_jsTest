@@ -19,10 +19,24 @@ class SearchInput {
     // keyup은 한글일때 두번엔터가 되는 오류가 난다
     $searchInput.addEventListener('keypress', (e) => {
       if (e.key === 'Enter') {
-        onSearch(e.target.value);
+        onSearch(e.target.value, this.$limitCount.value);
         // 최근 키워드 저장
         this.KeywordHistory.addKeyword(e.target.value);
       }
+    });
+
+    // 셀렉트 UI
+    const $limitCount = document.createElement('select');
+    this.$limitCount = $limitCount;
+    this.$limitCount.className = 'LimitCount';
+    $wrappper.appendChild($limitCount);
+
+    const LimitCountOptions = [10, 25, 50];
+    LimitCountOptions.map((option) => {
+      let $option = document.createElement('option');
+      $option.value = option;
+      $option.textContent = `${option}개`;
+      $limitCount.appendChild($option);
     });
 
     // 1-3랜덤버튼

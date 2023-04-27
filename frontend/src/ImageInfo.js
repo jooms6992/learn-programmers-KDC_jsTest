@@ -79,7 +79,6 @@ class ImageInfo {
         }
       });
       this.$imageInfo.addEventListener('click', (e) => {
-        console.log(e.target.className);
         if (
           e.target.className.includes('ImageInfo') ||
           e.target.className === 'close'

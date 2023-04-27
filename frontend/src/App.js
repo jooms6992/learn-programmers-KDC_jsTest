@@ -35,10 +35,10 @@ class App {
 
     this.searchInput = new SearchInput({
       $target,
-      onSearch: (keyword) => {
+      onSearch: (keyword, limit) => {
         // 로딩 show
         this.Loading.show();
-        api.fetchCats(keyword).then(({ data }) => {
+        api.fetchCatsWithLimit(keyword, limit).then(({ data }) => {
           // data가 null,빈배열, 요소 이렇게 3가지 경우가 올 수 있다.
           // 이걸 여기서 처리해주는 것이 아닌 각 컴포넌트에서!
           this.setState({ items: data, page: 1 });

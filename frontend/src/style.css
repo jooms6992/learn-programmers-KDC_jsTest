@@ -57,6 +57,29 @@ body * {
   display: inline-block;
   margin: 0 0 1em;
   width: 100%;
+  cursor: pointer;
+  position: relative;
+}
+
+.SearchResult .item .content {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.3);
+  /* text-align: center; */
+  font-size: 30px;
+  color: #fff;
+  opacity: 0;
+  transition: all 300ms ease-out;
+}
+
+.SearchResult .item:hover .content {
+  opacity: 1;
 }
 
 .SearchInputSection {
@@ -82,6 +105,13 @@ body * {
   width: 80%;
   font-size: 40px;
   padding: 10px 15px;
+}
+
+.LimitCount {
+  width: 10%;
+  height: 75px;
+  vertical-align: top;
+  font-size: 20px;
 }
 
 .RandomButton {
