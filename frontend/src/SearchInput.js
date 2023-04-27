@@ -5,6 +5,8 @@ const TEMPLATE = '<input type="text">';
 class SearchInput {
   constructor({ $target, onSearch, onRandomSearch }) {
     const $wrappper = document.createElement('section');
+    $wrappper.className = 'SearchInputSection';
+    $wrappper;
     $target.appendChild($wrappper);
 
     const $searchInput = document.createElement('input');
@@ -36,7 +38,7 @@ class SearchInput {
     });
 
     this.KeywordHistory = new KeywordHistory({
-      $target,
+      $target: $wrappper,
       onSearch,
     });
   }

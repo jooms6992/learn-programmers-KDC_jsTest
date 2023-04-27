@@ -18,6 +18,15 @@ class ImageInfo {
     this.data = nextData;
     console.log(this.data, '---ImageInfo');
     this.render();
+    this.setFade(nextData.visible);
+  }
+
+  setFade(visible) {
+    if (visible) {
+      this.$imageInfo.classList.add('show');
+    } else {
+      this.$imageInfo.classList.remove('show');
+    }
   }
 
   // 정보를 요청해서 받아와 무언가를 해줄때는 async await로 해주는게 좋음
@@ -57,7 +66,7 @@ class ImageInfo {
             <div>태생: ${origin}</div>
           </div>
         </div>`;
-      this.$imageInfo.style.display = 'block';
+      // this.$imageInfo.style.display = 'block';
 
       // this.$imageInfo.querySelector('.close').addEventListener('click', (e) => {
       //   this.closeImageInfo();
@@ -70,16 +79,18 @@ class ImageInfo {
         }
       });
       this.$imageInfo.addEventListener('click', (e) => {
+        console.log(e.target.className);
         if (
-          e.target.className === 'ImageInfo' ||
+          e.target.className.includes('ImageInfo') ||
           e.target.className === 'close'
         ) {
           this.closeImageInfo();
         }
       });
-    } else {
-      this.$imageInfo.style.display = 'none';
     }
+    // else {
+    //   this.$imageInfo.style.display = 'none';
+    // }
   }
 }
 
