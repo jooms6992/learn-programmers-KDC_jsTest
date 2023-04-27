@@ -114,3 +114,10 @@ SearchResult에서 App.js에서 제공해주는 내용을 받아와 SearchResult
 - App.js로부터 Empty컴포넌트에서 받은 데이터로 boolean을 판별한다.
 - setState로 데이터를 변경해준다.
 - render함수에서 조건문으로 데이터 값에 따른 ui와 display값 조정
+
+# 3 추가 요구사항
+- 최근검색어
+- 이미지 모달창
+- 이미지 정보 띄우기
+- select UI
+- 랜덤고양이 배너 
